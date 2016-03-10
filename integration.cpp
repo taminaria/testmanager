@@ -69,7 +69,7 @@ private:
 				}
 
 				vm->Name = r->FindNode("name").Str();
-				vm->Ip = r->FindNode("ip").Str();
+				vm->Ip = r->FindNode("ipv4").Str();
 				vm->Os = os;
 				vm->State = r->FindNode("status").Str();
 				vm->Tag = tag;
