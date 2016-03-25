@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<mgrdata>
+  <mainmenu level="admin+">
+    <node name="tool" first="yes">
+      <node name="workspace"/>
+      <node name="vm"/>
+      <node name="bugs"/>
+      <node name="builds"/>
+    </node>
+    <node name="integration" after="tool">
+      <node name="vmmanager.settings"/>
+	  <node name="bugzilla.settings"/>
+	  <node name="jenkins.task"/>
+	</node>
+	<node name="settings" after="integration">
+      <node name="managers"/>
+      <node name="repo"/>
+	</node>
+  </mainmenu>
+  <lang name="ru">
+    <messages name="desktop">
+      <msg name="menu_settings">Настройки</msg>
+      <msg name="menu_workspace">Workspace</msg>
+      <msg name="menu_vm">Виртуальные машины</msg>
+      <msg name="menu_bugs">Баги</msg>
+      <msg name="menu_vmmanager.settings">VMmanager</msg>
+	  <msg name="menu_bugzilla.settings">Bugzilla</msg>
+	  <msg name="menu_jenkins.task">Jenkins</msg>
+	  <msg name="menu_managers">Манагеры</msg>
+	  <msg name="menu_repo">Репозитории</msg>
+	  <msg name="menu_builds">Сборки</msg>
+	</messages>
+  </lang>
+</mgrdata>

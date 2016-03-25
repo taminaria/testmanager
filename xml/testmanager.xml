@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<mgrdata>
+  <metadata name="vmmanager.settings" type="list" key="name">
+    <toolbar>
+      <toolbtn name="new" func="vmmanager.settings.edit" type="new" img="t-new"/>
+      <toolbtn name="edit" func="vmmanager.settings.edit" type="edit" img="t-edit" default="yes"/>
+      <toolbtn name="delete" func="vmmanager.settings.delete" type="group" img="t-delete"/>
+      <toolsep/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+      <col type="data" name="url" sort="alpha"/>
+      <col type="data" name="comment" sort="alpha"/>
+    </coldata>
+  </metadata>
+  <metadata name="vmmanager.settings.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes"/>
+      </field>
+      <field name="url">
+        <input type="text" name="url" required="yes" check="url"/>
+      </field>
+      <field name="user">
+        <input type="text" name="user" required="yes" check="username"/>
+      </field>
+      <field name="passwd">
+        <input type="password" name="passwd"/>
+      </field>
+      <field name="comment">
+        <input type="text" name="comment"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="vm" type="list" key="id">
+    <toolbar>
+      <toolbtn name="edit" func="vm.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="configure" func="vm.configure" type="action" img="t-set"/>
+      <toolsep/>
+      <toolbtn name="filter" func="vm.filter" type="new" img="t-filter"/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+      <col type="data" name="vmmgrname" sort="alpha"/>
+      <col type="data" name="ip" sort="alpha"/>
+      <col type="data" name="os" sort="alpha"/>
+      <col type="data" name="repo" sort="alpha"/>
+      <col type="data" name="comment" sort="alpha" edit="vm.edit"/>
+    </coldata>
+  </metadata>
+  <metadata name="vm.filter" type="form">
+    <form>
+     <field name="repo">
+       <select name="repo" query="SELECT name, name FROM repo" sqlname="r.name"/>
+     </field>
+    </form>
+  </metadata>
+  <metadata name="vm.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes" readonly="yes"/>
+      </field>
+      <field name="comment">
+        <input type="text" name="comment"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="bugs" type="list" key="id">
+    <toolbar>
+      <toolbtn name="edit" func="bugs.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="go" func="bugs.go" type="action" img="t-go"/>
+      <toolsep/>
+      <toolsep/>
+      <toolbtn name="filter" func="bugs.filter" type="new" img="t-filter"/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="bugid" sort="alpha" sorted="yes"/>
+      <col type="data" name="name" sort="alpha"/>
+      <col type="data" name="managername" sort="alpha"/>
+      <col type="data" name="branchname" sort="alpha"/>
+      <col type="data" name="state" sort="alpha"/>
+      <col type="data" name="comment" sort="alpha" edit="bugs.edit"/>
+    </coldata>
+  </metadata>
+  <metadata name="bugs.edit" type="form">
+    <form>
+      <field name="bugid">
+        <input type="text" name="bugid" required="yes" readonly="yes"/>
+      </field>
+      <field name="name">
+        <input type="text" name="name" required="yes" readonly="yes"/>
+      </field>
+      <field name="comment">
+        <input type="text" name="comment"/>
+      </field>
+      <field name="descr">
+        <textarea type="text" name="descr"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="workspace" type="list" key="id">
+    <toolbar>
+      <toolbtn name="edit" func="bugs.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="delete" func="bugs.delete" type="delete" img="t-delete"/>
+      <toolbtn name="go" func="bugs.go" type="action" img="t-go"/>
+      <toolsep/>
+      <toolbtn name="filter" func="workspace.filter" type="new" img="t-filter"/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="bugid" sort="alpha" sorted="yes"/>
+      <col type="data" name="name" sort="alpha"/>
+      <col type="data" name="manager" sort="alpha"/>
+      <col type="data" name="branch" sort="alpha"/>
+      <col type="data" name="state" sort="alpha"/>
+      <col type="data" name="repo" nestedlist="vm&amp;repo=__col_value__" sort="alpha"/>
+      <col type="data" name="comment" sort="alpha" edit="bugs.edit"/>
+    </coldata>
+  </metadata>
+  <metadata name="bugzilla.settings" type="form">
+    <form>
+      <field name="url">
+        <input type="text" name="url" required="yes" check="url"/>
+      </field>
+      <field name="user">
+        <input type="text" name="user" required="yes" check="email"/>
+      </field>
+      <field name="passwd">
+        <input type="password" name="passwd" required="yes"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="jenkins.task" type="list" key="name">
+    <toolbar>
+      <toolbtn name="new" func="jenkins.task.edit" type="new" img="t-new"/>
+      <toolsep/>
+      <toolbtn name="edit" func="jenkins.task.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="delete" func="jenkins.task.delete" type="group" img="t-delete"/>
+      <toolsep/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+      <col type="data" name="url" sort="alpha"/>
+    </coldata>
+  </metadata>
+  <metadata name="jenkins.task.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes"/>
+      </field>
+      <field name="manager">
+        <select name="manager"/>
+      </field>
+      <field name="url">
+        <input type="text" name="url" required="yes" check="url"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="managers" type="list" key="name">
+    <toolbar>
+      <toolbtn name="new" func="managers.edit" type="new" img="t-new"/>
+      <toolsep/>
+      <toolbtn name="edit" func="managers.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="delete" func="managers.delete" type="group" img="t-delete"/>
+      <toolsep/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+    </coldata>
+  </metadata>
+  <metadata name="managers.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="builds" type="list" key="id">
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+      <col type="data" name="branch" sort="alpha"/>
+      <col type="data" name="manager" sort="alpha"/>
+      <col type="data" name="repo" sort="alpha"/>
+    </coldata>
+  </metadata>
+    <metadata name="repo" type="list" key="name">
+    <toolbar>
+      <toolbtn name="new" func="repo.edit" type="new" img="t-new"/>
+      <toolsep/>
+      <toolbtn name="edit" func="repo.edit" type="edit" img="t-edit" default="yes"/>
+      <toolsep/>
+      <toolbtn name="delete" func="repo.delete" type="group" img="t-delete"/>
+      <toolsep/>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+    </coldata>
+  </metadata>
+  <metadata name="repo.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes"/>
+      </field>
+    </form>
+  </metadata>
+  <lang name="ru">
+    <messages name="vmmanager.settings">
+      <msg name="title">Подключения к VMmanager</msg>
+      <msg name="name">Имя</msg>
+      <msg name="url">URL</msg>
+      <msg name="user">Пользователь</msg>
+      <msg name="passwd">Пароль</msg>
+      <msg name="comment">Комментарий</msg>
+      <msg name="msg_confirm_delete">Do you really want delete following VMmanager:</msg>
+    </messages>
+    <messages name="vmmanager.settings.edit">
+      <msg name="title">Редактировать подключение к VMmanager</msg>
+      <msg name="title_new">Создать подключение к VMmanager</msg>
+      <include name="vmmanager.settings"/>
+    </messages>
+    <messages name="jenkins.task">
+      <msg name="title">Таски в Jenkins</msg>
+      <msg name="name">Имя</msg>
+      <msg name="manager">Манагер</msg>
+      <msg name="url">URL</msg>
+      <msg name="msg_confirm_delete">Do you really want delete following task:</msg>
+    </messages>
+    <messages name="jenkins.task.edit">
+      <msg name="title">Редактировать таску</msg>
+      <msg name="title_new">Создать таску</msg>
+      <include name="jenkins.task"/>
+    </messages>
+    <messages name="vm">
+      <msg name="title">Виртуальные машины</msg>
+      <msg name="name">Имя</msg>
+      <msg name="vmmgrname">VMmanager</msg>
+      <msg name="ip">IP-адрес</msg>
+      <msg name="os">Шаблон OS</msg>
+      <msg name="state">Состояние</msg>
+      <msg name="repo">Репозиторий</msg>
+      <msg name="comment">Комментарий</msg>
+      <msg name="short_configure">Конф.</msg>
+    </messages>
+    <messages name="vm.edit">
+      <msg name="title">Редактировать вирутальную машину</msg>
+      <include name="vm"/>
+    </messages>
+    <messages name="vm.filter">
+      <include name="vm"/>
+    </messages>
+    <messages name="bugs">
+      <msg name="title">Баги</msg>
+      <msg name="name">Имя</msg>
+      <msg name="bugid">Номер</msg>
+      <msg name="managername">Продукт</msg>
+      <msg name="branchname">Бранч</msg>
+      <msg name="repo">Репозиторий</msg>
+      <msg name="descr">Описание</msg>
+      <msg name="comment">Комментарий</msg>
+      <msg name="short_go">Перейти</msg>
+    </messages>
+    <messages name="bugs.edit">
+      <msg name="title">Просмотр баги</msg>
+      <include name="bugs"/>
+    </messages>
+    <messages name="workspace">
+      <msg name="title">workspace</msg>
+      <msg name="name">Имя</msg>
+      <msg name="bugid">Номер</msg>
+      <msg name="manager">Продукт</msg>
+      <msg name="branch">Бранч</msg>
+      <msg name="repo">Репозиторий</msg>
+      <msg name="descr">Описание</msg>
+      <msg name="comment">Комментарий</msg>
+      <msg name="short_go">Перейти</msg>
+    </messages>
+    <messages name="vmmanager.settings">
+      <msg name="title">Настройки подключения к Bugzilla</msg>
+      <msg name="title_new">Настройки подключения к Bugzilla</msg>
+      <msg name="url">URL</msg>
+      <msg name="user">Пользователь</msg>
+      <msg name="passwd">Пароль</msg>
+    </messages>
+    <messages name="bugzilla.settings">
+      <msg name="title">Настройки подключения к Bugzilla</msg>
+      <msg name="title_new">Настройки подключения к Bugzilla</msg>
+      <msg name="url">URL</msg>
+      <msg name="user">Пользователь</msg>
+      <msg name="passwd">Пароль</msg>
+    </messages>
+    <messages name="jenkins.settings">
+      <msg name="title">Настройки подключения к Jenkins</msg>
+      <msg name="title_new">Настройки подключения к Jenkins</msg>
+      <msg name="url">URL</msg>
+      <msg name="user">Пользователь</msg>
+      <msg name="passwd">Пароль</msg>
+    </messages>
+    <messages name="managers">
+      <msg name="title">Манагеры</msg>
+      <msg name="name">Имя</msg>
+    </messages>
+    <messages name="managers.edit">
+      <msg name="title">Редактировать манагер</msg>
+      <msg name="title_new">Добавить манагер</msg>
+      <include name="managers"/>
+    </messages>
+    <messages name="builds">
+      <msg name="title">Сборки</msg>
+      <msg name="name">Номер</msg>
+      <msg name="branch">Бранч</msg>
+      <msg name="manager">Манагер</msg>
+      <msg name="repo">Репозиторий</msg>
+    </messages>
+    <messages name="repo">
+      <msg name="title">Репозитории</msg>
+      <msg name="name">Имя</msg>
+    </messages>
+    <messages name="repo.edit">
+      <msg name="title">Редактировать репозиторий</msg>
+      <msg name="title_new">Добавить репозиторий</msg>
+      <include name="managers"/>
+    </messages>
+    <messages name="mgrerror_exists">
+      <msg name="user">User</msg>
+    </messages>
+  </lang>
+</mgrdata>
